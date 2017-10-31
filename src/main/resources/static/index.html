@@ -1,53 +1,137 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-      <title>Spring Boot WebSocket Chat Application</title>
-      <link rel="stylesheet" href="/css/main.css" />
-  </head>
-  <body>
-    <noscript>
-      <h2>Sorry! Your browser doesn't support Javascript</h2>
-    </noscript>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Spring Boot WebSocket Chat Application</title>
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet"
+	href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="bower_components/font-awesome/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="bower_components/Ionicons/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="css/skins/skin-blue.min.css">
+<!-- jvectormap -->
+<link rel="stylesheet"
+	href="bower_components/jvectormap/jquery-jvectormap.css">
+<!-- Date Picker -->
+<link rel="stylesheet"
+	href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<!-- bootstrap wysihtml5 - text editor -->
+<link rel="stylesheet"
+	href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<noscript>
+		<h2>Sorry! Your browser doesn't support Javascript</h2>
+	</noscript>
 
-    <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Type your username</h1>
-            <form id="usernameForm" name="usernameForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div id="chat-page">
+		<div id="div1">
+			<!-- Main content -->
+			<section style="width: 750px;">
+				<div class="box box-solid">
+					<div class="box-header with-border">
+						<i class="fa fa-text-width"></i>
 
-    <div id="chat-page" class="hidden">
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Spring WebSocket Chat Demo</h2>
-            </div>
-            <div class="connecting">
-                Connecting...
-            </div>
-            <ul id="messageArea">
+						<h3 class="box-title">Request from EF</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<dl class="dl-horizontal">
+							<dt>Threat Level</dt>
+							<dd>High</dd>
+							<dt>Crisis Type</dt>
+							<dd>Attack by Drones</dd>
+							<dt>Affected Area</dt>
+							<dd>Central Area</dd>
+							<dt>Crisis Details</dt>
+							<dd>Attack by foreign drone with fire</dd>
+							<dt>Recommend Course of Action</dt>
+							<dd>Surround them and capture</dd>
+							<dd>Activate evacuation and ambulance team outside the
+								danger zone</dd>
+							<dt>Force to be Deployed</dt>
+							<dd>Ambulance</dd>
+							<dd>Police</dd>
+						</dl>
+					</div>
+					<div class="box-footer">
+						<a href="#" class="btn btn-info pull-right">Acknowledge</a>
+					</div>
+					<div class="small-box bg-yellow">
+						<div class="inner">
+							<a href="sendupdate.html">Send Update</a>
+						</div>
+					</div>
 
-            </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                        <button type="submit" class="primary">Send</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+					<div class="small-box bg-yellow">
+						<div class="inner">
+							<a href="sendreport.html">Send Report</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-    <script src="/js/sockjs.min.js"></script>
-    <script src="/js/stomp.min.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+		<div id="div2">
+
+			<!-- Chat -->
+			<section style="width: 600px;">
+				<div class="chat-container">
+					<div class="chat-header">
+						<i class="fa fa-bell-o"></i>
+						<p class="same-line">IF Live Feed</p>
+						<div id="online-status" class="online-status"></div>
+						<p id="online-status-text" class="same-line text-success small">Online</p>
+
+
+					</div>
+					<div class="connecting">Connecting...</div>
+
+					<div id="reconnect" class="center-div form-group">
+						<button type="submit" onclick="reconnect()"
+							class="accent username-submit btn btn-success">Reconnect</button>
+					</div>
+
+					<!--CHAT MESSAGE CONTAINER-->
+
+					<div id="chat-page" style="height: min-content;">
+						<ul id="messageArea"
+							style="overflow-y: scroll; overflow-x: hidden;">
+
+						</ul>
+
+						<!--CHAT INPUT FORM -->
+						<form id="messageForm" name="messageForm" action="">
+							<div class="form-group">
+								<div class="input-group clearfix">
+									<input type="text" id="message" placeholder="Type a message..."
+										autocomplete="off" class="form-control" />
+									<button type="submit" class="primary">Send</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+	<script src="/js/sockjs.min.js"></script>
+	<script src="/js/stomp.min.js"></script>
+	<script src="/js/main.js"></script>
+	
+</body>
 </html>

@@ -17,19 +17,8 @@ body {
     font-size: 1rem;
     line-height: 1.58;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #128ff2;
     height: 100%;
-}
-
-body:before {
-    height: 50%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #128ff2;
-    content: "";
-    z-index: 0;
 }
 
 .clearfix:after {
@@ -51,6 +40,8 @@ body:before {
 
 .form-group {
     margin-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 input {
@@ -140,7 +131,7 @@ button.accent {
 
 .chat-container {
     max-width: 700px;
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     background-color: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
@@ -158,10 +149,11 @@ button.accent {
     overflow-y: scroll;
     padding: 0 20px 0px 20px;
     height: calc(100% - 150px);
+    max-height: 45	0px;
 }
 
 #chat-page #messageForm {
-    padding: 20px;
+    margin-top: 30x;
 }
 
 #chat-page ul li {
@@ -232,8 +224,9 @@ button.accent {
 
 .chat-header {
     text-align: center;
-    padding: 15px;
+    padding: 8px;
     border-bottom: 1px solid #ececec;
+    backgroun-color: royalblue;
 }
 
 .chat-header h2 {
@@ -295,4 +288,12 @@ button.accent {
     .chat-header h2 {
         font-size: 1.1em;
     }
+}
+#div1 {
+    display: inline-block;
+}
+#div2 {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 560px;
 }
