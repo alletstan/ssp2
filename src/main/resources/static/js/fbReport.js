@@ -34,31 +34,8 @@ function sendreport() {
 	var casualtyAssessment = document.querySelector('#casualtyAssessment').value;
 	var damageAssessment = document.querySelector('#damageAssessment').value;
 
-	var today = new Date();
-	var DD = today.getDate();
-	var MM = today.getMonth()+1;
-	var YYYY = today.getFullYear();
-	var hh = today.getHours();
-	var mm = today.getMinutes();
-	var ss = today.getSeconds();
-	
-	
-	if(DD<10){
-		DD='0'+DD;
-	}
-	if(MM<10){
-		MM='0'+MM;
-	}
-	if(hh<10){
-		hh='0'+hh;
-	}
-	if(mm<10){
-		mm='0'+mm;
-	}
-	if(ss<10){
-		ss='0'+ss;
-	}
-	var today = YYYY + '-' + MM + '-' + DD + " " + hh + ":" + mm + ":" + ss;
+
+	let today = moment(new Date()).format('DD-MM-YYYY HH:mm:SS a');
 
 	let report = {
 		"reportDateTime" : today,
@@ -80,15 +57,5 @@ function sendreport() {
 	window.alert("Report Sent");
 };
 
-function cancelreport() {
-	window.confirm("Go back to home page?");
-	if (confirm("Go back to home page?") == true) {
-		window.location = '../index.html'
-	} else {
-		window.location = '/sendreport.html'
-	}
-}
-
 window.addEventListener("load", connect, true)
 reportDetails.addEventListener('submit', sendreport, true)
-reportDetails.addEventListener('cancel', cancelreport, true)

@@ -103,7 +103,7 @@ function getrequest() {
 							forcedeploymenttext.innerHTML = deploymentForce;
 
 							window
-									.alert("You have a new request from EF sent on "
+									.alert("You have a request from EF sent on "
 											+ requestDateTime);
 						}
 

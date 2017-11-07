@@ -21,6 +21,8 @@ var recommendedactiontitle = document.querySelector('#recommendedactiontitle');
 var recommendedactiontext = document.querySelector('#recommendedactiontext');
 var forcedeploymenttitle = document.querySelector('#forcedeploymenttitle');
 var forcedeploymenttext = document.querySelector('#forcedeploymenttext');
+var acknowledgedtitle = document.querySelector('#acknowledgedtitle');
+var acknowledgedtext = document.querySelector('#acknowledgedtext');
 
 function putLink(requestDateTime) {
 	var el = document.getElementById("list");
@@ -55,6 +57,8 @@ function readData(requestDateTime){
 		crisisdetailstitle.innerHTML = "Crisis Details";
 		recommendedactiontitle.innerHTML = "Recommended Course of Action";
 		forcedeploymenttitle.innerHTML = "Force to be Deployed";
+		acknowledgedtitle.innerHTML = "Acknowledged";
+		
 
 		datetimetext.innerHTML = requestDateTime;
 		threatleveltext.innerHTML = threatLevel;
@@ -63,6 +67,7 @@ function readData(requestDateTime){
 		crisisdetailstext.innerHTML = crisisDetails;
 		recommendedactiontext.innerHTML = recommendedAction;
 		forcedeploymenttext.innerHTML = deploymentForce;
+		acknowledgedtext.innerHTML = isAcknowledged;
 		
 		
 	})
