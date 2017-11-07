@@ -39,13 +39,13 @@ function sendreport() {
 
 	let report = {
 		"reportDateTime" : today,
-		"incidentDate" : incidentDate,
+		"incidentDateTime" : incidentDate,
 		"incidentLocation" : incidentLocation,
 		"incidentDescription" : incidentDescription,
 		"assetActivated" : assetActivated,
 		"timeTakenFullDeploy" : timeTakenFullDeploy,
 		"timelyReport" : timelyReport,
-		"incidentEndDate" : incidentEndDate,
+		"incidentEndDateTime" : incidentEndDate,
 		"casualtyAssessment" : casualtyAssessment,
 		"damageAssessment" : damageAssessment,
 		"isAcknowledged" : "false"
