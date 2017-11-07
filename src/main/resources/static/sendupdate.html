@@ -45,12 +45,18 @@
 				<div class="box-body">
 					<!-- /.input group -->
 					<!-- form start -->
-					<form class="form-horizontal" id="updateDetails" action="/index.html">
+					<form class="form-horizontal" id="updateDetails"
+						action="/index.html">
 						<div class="box-body">
 							<div class="form-group">
-								<label>Threat Level:</label> <input type="text"
-									class="form-control" id="threatLevel"
-									placeholder="Threat Level">
+								<label>Threat Level</label> <select
+									class="form-control select2" style="width: 100%;"
+									placeholder="Threat Level" id="threatLevel">
+									<option selected="selected">1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>Area Deployed:</label> <input type="text"
@@ -69,8 +75,10 @@
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer">
-							<a href="/index.html" class="btn btn-default" id="CancelUpdateButton">Cancel</a>
-							<button class="btn btn-info pull-right" id="SendUpdateButton" type="submit">Send Update</button>
+							<a href="/index.html" class="btn btn-default"
+								id="CancelUpdateButton">Cancel</a>
+							<button class="btn btn-info pull-right" id="SendUpdateButton"
+								type="submit">Send Update</button>
 						</div>
 						<!-- /.box-footer -->
 					</form>
