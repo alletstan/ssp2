@@ -98,7 +98,6 @@ function onMessageReceived(payload) {
 		messageElement.classList.add('event-message');
 		message.content = message.sender + ' left!';
 	} else {
-
 		messageElement.classList.add('chat-message');
 
 		// chat picture
