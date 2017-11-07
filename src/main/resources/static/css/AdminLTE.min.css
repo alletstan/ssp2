@@ -2584,7 +2584,7 @@ perspective
 	box-shadow: none;
 	border-width: 1px;
 	display: block;
-	color: #fff;
+	color: #444;
 }
 
 .btn:active {
