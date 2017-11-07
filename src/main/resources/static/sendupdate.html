@@ -28,7 +28,7 @@
 				Send Update <small>IF to EF</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="index.html"><i class="fa fa-dashboard"></i>
+				<li><a href="ifUI.html"><i class="fa fa-dashboard"></i>
 						Home</a></li>
 				<li class="active">Send Update</li>
 			</ol>
@@ -46,7 +46,7 @@
 					<!-- /.input group -->
 					<!-- form start -->
 					<form class="form-horizontal" id="updateDetails"
-						action="/index.html">
+						action="/ifUI.html">
 						<div class="box-body">
 							<div class="form-group">
 								<label>Threat Level</label> <select
@@ -69,13 +69,13 @@
 									placeholder="Deployment Status">
 							</div>
 							<div class="form-group">
-								<label>Note:</label> <input type="text" class="form-control"
-									id="note" placeholder="Note">
+								<label>Notes:</label> <input type="text" class="form-control"
+									id="notes" placeholder="Note">
 							</div>
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer">
-							<a href="/index.html" class="btn btn-default"
+							<a href="/ifUI.html" class="btn btn-default"
 								id="CancelUpdateButton">Cancel</a>
 							<button class="btn btn-info pull-right" id="SendUpdateButton"
 								type="submit">Send Update</button>
@@ -100,6 +100,7 @@
 		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-messaging.js"></script>
 
 	<script src="/js/fbUpdate.js"></script>
+	<script src="js/moment.js"></script>
 
 </body>
 

@@ -6,7 +6,6 @@
 
 html, body {
 	height: 100%;
-	overflow: hidden;
 }
 
 body {
@@ -21,6 +20,22 @@ body {
 	height: 100%;
 }
 
+.col-md-6 {
+	width: 50%;
+	float: left;
+	position: relative;
+	display: inline-flex;
+	height: 550px;
+	max-height: 550px;
+}
+
+.col-md-3 {
+	width: 25%;
+	float: left;
+	position: relative;
+	display: inline-flex;
+}
+
 .clearfix:after {
 	display: block;
 	content: "";
@@ -33,9 +48,16 @@ body {
 
 .form-control {
 	width: 100%;
-	min-height: 38px;
+	overflow-x: hidden;
+	display: block;
+	height: 34px;
+	padding: 6px 8px 6px 8px;
 	font-size: 15px;
-	border: 1px solid #c8c8c8;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
 }
 
 .form-group {
@@ -52,14 +74,17 @@ input {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	color: #444;
 }
 
 h1 {
 	font-size: 1.7em;
 }
 
-#request-page {
+#request-page, #update-page, #report-page {
 	margin: 12px;
+	max-height: 550px;
+	overflow-y: scroll;
 }
 
 #request-page h3 {

@@ -3,134 +3,58 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Spring Boot WebSocket Chat Application</title>
+<title>EF/IF Main UI | Log in</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="css/skins/skin-blue.min.css">
+<link rel="stylesheet" href="/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="/css/main.css" />
 </head>
-<body>
-	<noscript>
-		<h2>Sorry! Your browser doesn't support Javascript</h2>
-	</noscript>
-
-	<div id="chat-page">
-		<div id="div1">
-			<!-- Main content -->
-			<section style="width: 750px;">
-				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
-
-						<h3 class="box-title">Request Report from EF</h3>
-					</div>
-					<!-- /.box-header -->
-					<div id="request-page" class="box-request" style="height: min-content;">
-					
-					<h3 id="datetimetitle"></h3>
-					<p id="datetimetext"></p>
-
-						<h3 id="threatleveltitle"></h3>
-						<p id="threatleveltext"></p>
-						
-						<h3 id="crisistypetitle"></h3>
-						<p id="crisistypetext"></p>
-						
-						<h3 id="affectedareatitle"></h3>
-						<p id="affectedareatext"></p>
-						
-						<h3 id="crisisdetailstitle"></h3>
-						<p id="crisisdetailstext"></p>
-						
-						<h3 id="recommendedactiontitle"></h3>
-						<p id="recommendedactiontext"></p>
-						
-						<h3 id="forcedeploymenttitle"></h3>
-						<p id="forcedeploymenttext"></p>
-
-					</div>
-					<div class="box-footer">
-						<a href="#" class="btn btn-info pull-right" type="acknowledge" onClick="setAcknowledged()">Acknowledge</a>
-					</div>
-					<div class="small-box bg-blue">
-						<div class="inner">
-							<a href="sendupdate.html">Send Update</a>
-						</div>
-					</div>
-
-					<div class="small-box bg-blue">
-						<div class="inner">
-							<a href="sendreport.html">Send Report</a>
-						</div>
-					</div>
-					
-					<div class="small-box bg-blue">
-						<div class="inner">
-							<a href="requesthistory.html">View Request History</a>
-						</div>
-					</div>
-				</div>
-			</section>
+<body class="hold-transition login-page">
+	<div class="login-box">
+		<div class="login-logo">
+			<a href="../../index.html"><b>Welcome to SSP2 EF-IF
+					Application</b></a>
 		</div>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<p class="login-box-msg">Enter log In credentials to access EF/IF
+				Mainframe</p>
 
-		<div id="div2">
-
-			<!-- Chat -->
-			<section style="width: 600px;">
-				<div class="chat-container">
-					<div class="chat-header">
-						<i class="fa fa-bell-o"></i>
-						<p class="same-line">IF Live Feed</p>
-						<div id="online-status" class="online-status"></div>
-						<p id="online-status-text" class="same-line text-success small">Online</p>
-
-
-					</div>
-					<div class="connecting">Connecting...</div>
-
-					<div id="reconnect" class="center-div form-group">
-						<button type="submit" onclick="reconnect()"
-							class="accent username-submit btn btn-success">Reconnect</button>
-					</div>
-
-					<!--CHAT MESSAGE CONTAINER-->
-
-					<div id="chat-page" style="height: min-content;">
-						<ul id="messageArea"
-							style="overflow-y: scroll; overflow-x: hidden;">
-
-						</ul>
-
-						<!--CHAT INPUT FORM -->
-						<form id="messageForm" name="messageForm" action="">
-							<div class="form-group">
-								<div class="input-group clearfix">
-									<input type="text" id="message" placeholder="Type a message..."
-										autocomplete="off" class="form-control" />
-									<button type="submit" class="primary">Send</button>
-								</div>
-							</div>
-						</form>
-					</div>
+			<form id="loginForm" action="">
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control" placeholder="Username" id="username">
 				</div>
-			</section>
+				<div class="form-group has-feedback">
+					<input type="password" class="form-control" placeholder="Password">
+					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" style="width: 50%;">
+						<div class="checkbox icheck">
+							<label> <input type="checkbox"> Remember Me
+							</label>
+						</div>
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-4" style="width: 50%;">
+						<button class="btn btn-primary btn-block btn-flat" onClick="signIn()">Sign
+							In</button>
+					</div>
+					<!-- /.col -->
+				</div>
+			</form>
 		</div>
+		<!-- /.login-box-body -->
 	</div>
-	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
-	<script
-		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
-	<script
-		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
-	<script
-		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-messaging.js"></script>
+	<!-- /.login-box -->
 
-	<script src="js/sockjs.min.js"></script>
-	<script src="js/stomp.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/fbRequest.js"></script>
-	<script src="js/moment.js"></script>
+	<script src="js/login.js"></script>
 </body>
 </html>

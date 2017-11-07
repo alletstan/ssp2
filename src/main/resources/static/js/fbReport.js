@@ -29,7 +29,7 @@ function sendreport() {
 	var incidentDescription = document.querySelector('#incidentDescription').value;
 	var assetActivated = document.querySelector('#assetActivated').value;
 	var timeTakenFullDeploy = document.querySelector('#timeTakenFullDeploy').value;
-	var timelyReport = document.querySelector('#timelyReport').value;
+	var timelyUpdate = document.querySelector('#timelyUpdate').value;
 	var incidentEndDate = document.querySelector('#incidentEndDate').value;
 	var casualtyAssessment = document.querySelector('#casualtyAssessment').value;
 	var damageAssessment = document.querySelector('#damageAssessment').value;
@@ -44,11 +44,12 @@ function sendreport() {
 		"incidentDescription" : incidentDescription,
 		"assetActivated" : assetActivated,
 		"timeTakenFullDeploy" : timeTakenFullDeploy,
-		"timelyReport" : timelyReport,
+		"timelyUpdate" : timelyUpdate,
 		"incidentEndDateTime" : incidentEndDate,
 		"casualtyAssessment" : casualtyAssessment,
 		"damageAssessment" : damageAssessment,
-		"isAcknowledged" : "false"
+		"isAcknowledged" : "false",
+		"isAcknowledged_datetime" : "false " + today
 	};
 	console.log(report);
 	var pushedItem = dbReport.push(report);

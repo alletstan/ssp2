@@ -28,7 +28,7 @@
 				Report System <small>IF to EF</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="index.html"><i class="fa fa-dashboard"></i>
+				<li><a href="ifUI.html"><i class="fa fa-dashboard"></i>
 						Home</a></li>
 				<li class="active">Send Report</li>
 			</ol>
@@ -46,7 +46,7 @@
 					<!-- /.input group -->
 					<!-- form start -->
 					<form class="form-horizontal" id="reportDetails"
-						action="/index.html">
+						action="/ifUI.html">
 						<div class="box-body">
 							<div class="form-group">
 								<label>Date and Time Of Incident:</label> <input type="text"
@@ -58,9 +58,9 @@
 									placeholder="Location of Incident">
 							</div>
 							<div class="form-group">
-								<label>Description of Incident Provided:</label> <input
+								<label>Description of Incident:</label> <input
 									type="text" class="form-control" id="incidentDescription"
-									placeholder="Description of Incident Provided">
+									placeholder="Description of Incident">
 							</div>
 							<div class="form-group">
 								<label>Asset Activated:</label> <input type="text"
@@ -70,11 +70,11 @@
 							<div class="form-group">
 								<label>Time Taken to be Fully Deployed:</label> <input
 									type="text" class="form-control" id="timeTakenFullDeploy"
-									placeholder="Time Taken in Minutes">
+									placeholder="Time Taken for Full Deployment in Minutes">
 							</div>
 							<div class="form-group">
-								<label>Timly Update:</label> <input type="text"
-									class="form-control" id="timelyReport"
+								<label>Timely Update:</label> <input type="text"
+									class="form-control" id="timelyUpdate"
 									placeholder="Timely Update">
 							</div>
 							<div class="form-group">
@@ -95,7 +95,7 @@
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer">
-							<a href="/index.html" class="btn btn-default" id="CancelReportButton">Cancel</a>
+							<a href="/ifUI.html" class="btn btn-default" id="CancelReportButton">Cancel</a>
 							<button class="btn btn-info pull-right" id="SendReportButton"
 								type="submit">Send Report</button>
 						</div>
@@ -117,6 +117,7 @@
 		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-messaging.js"></script>
 
 	<script src="/js/fbReport.js"></script>
+	<script src="js/moment.js"></script>
 
 </body>
 

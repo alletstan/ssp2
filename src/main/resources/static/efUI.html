@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>EF Mainframe</title>
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="css/skins/skin-blue.min.css">
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<header class="main-header">
+		<b>EF Mainframe</b>
+	</header>
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+				<div class="col-md-6">
+					<!-- general form elements -->
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">Report System</h3>
+						</div>
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form role="form">
+							<div class="small-box bg-blue">
+								<div class="inner">
+									<a href="efsendupdate.html">View Report</a>
+								</div>
+							</div>
+							<div class="small-box bg-blue">
+								<div class="inner">
+									<a href="efsendupdate.html">Send Report</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- /.box -->
+					<!-- Form Element sizes -->
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Send CMO Update</h3>
+						</div>
+						<div class="box-body">
+							<label>Choice of IF</label> <select class="form-control select2"
+								style="width: 100%;" placeholder="Choice of IF">
+								<option selected="selected">Military Force</option>
+								<option>Firefighter</option>
+								<option>Search and Rescue</option>
+								<option>Coast Guard</option>
+								<option>HAZMAT</option>
+								<option>Bomb Disposal</option>
+								<option>Civilian Evacuation</option>
+								<option>Ambulance</option>
+								<option>Aviation</option>
+							</select> <br> <input class="form-control" type="text"
+								placeholder="Deployment Status"> <br> <input
+								class="form-control" rows="3" placeholder="Remarks"></input>
+						</div>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Send</button>
+						</div>
+					</div>
+					<!-- /.box -->
+				</div>
+				<div class="col-md-6">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Send IF Request</h3>
+						</div>
+						<form class="form-horizontal" id="requestDetails"
+							action="/efUI.html">
+							<div class="box-body">
+								<label>Threat Level</label> <select class="form-control select2"
+									style="width: 100%;" placeholder="Choice of IF"
+									id="threatLevel">
+									<option selected="selected">1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select> <br> <input class="form-control" type="text"
+									placeholder="Crisis type" id="crisisType"> <br> <input
+									class="form-control" type="text" placeholder="Affected area"
+									id="affectedArea"> <br> <input
+									class="form-control" rows="3" placeholder="Crisis details"
+									id="crisisDetails"></input> <br> <input
+									class="form-control" rows="3"
+									placeholder="Recommended course of action"
+									id="recommendedAction"></input> <br> <label>Choice
+									of IF</label> <select class="form-control select2" style="width: 100%;"
+									placeholder="Choice of IF" id="choiceOfIF">
+									<option selected="selected">Military Force</option>
+									<option>Firefighter</option>
+									<option>Search and Rescue</option>
+									<option>Coast Guard</option>
+									<option>HAZMAT</option>
+									<option>Bomb Disposal</option>
+									<option>Civilian Evacuation</option>
+									<option>Ambulance</option>
+									<option>Aviation</option>
+								</select>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<button type="submit" class="btn btn-primary">Send</button>
+							</div>
+						</form>
+					</div>
+					<!-- /.box -->
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Receive CMO Request</h3>
+						</div>
+						<div class="box-body">
+							<div class="form-group"></div>
+							<input type="text" class="form-control" placeholder="Name"
+								disabled> <br> <input type="text"
+								class="form-control" placeholder="Position in CMO" disabled>
+							<br> <input type="text" class="form-control"
+								placeholder="Threat level" disabled> <br> <input
+								type="text" class="form-control" placeholder="Crisis type"
+								disabled> <br> <input type="text"
+								class="form-control" placeholder="Affected area" disabled>
+							<br> <input type="text" class="form-control" rows="3"
+								placeholder="Crisis details" disabled></input> <br> <input
+								type="text" class="form-control" rows="2"
+								placeholder="Recommended course of action" disabled></input> <br>
+							<input type="text" class="form-control" rows="2"
+								placeholder="Forces to be deployed" disabled></input>
+						</div>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<a href="#" class="btn btn-info pull-right" type="acknowledge">Acknowledge</a>
+							<button type="button" class="btn btn-primary">View
+								History</button>
+						</div>
+					</div>
+					<!-- /.box -->
+				</div>
+				<div class="col-md-3">
+					<div class="box">
+						<div class="box-header with-border">
+							<i class="fa fa-text-width"></i>
+
+							<h3 class="box-title">Receive IF Update</h3>
+						</div>
+						<!-- /.box-header -->
+						<div id="update-page" class="box-request"
+							style="height: min-content;">
+
+							<h3 id="datetimetitle"></h3>
+							<p id="datetimetext"></p>
+
+							<h3 id="nametitle"></h3>
+							<p id="nametext"></p>
+
+							<h3 id="positiontitle"></h3>
+							<p id="positiontext"></p>
+
+							<h3 id="threatleveltitle"></h3>
+							<p id="threatleveltext"></p>
+
+							<h3 id="areadeployedtitle"></h3>
+							<p id="areadeployedtext"></p>
+
+							<h3 id="deploymentstatustitle"></h3>
+							<p id="deploymentstatustext"></p>
+
+							<h3 id="notestitle"></h3>
+							<p id="notestext"></p>
+
+						</div>
+						<div class="box-footer">
+							<a href="#" class="btn btn-info pull-right" type="acknowledge"
+								onClick="updateAcknowledged()">Acknowledge</a>
+								<button type="button" class="btn btn-primary">View
+								History</button>
+						</div>
+						<!-- /.box -->
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="box">
+						<div class="box-header with-border">
+							<i class="fa fa-text-width"></i>
+
+							<h3 class="box-title">Receive IF Report</h3>
+						</div>
+						<!-- /.box-header -->
+						<div id="report-page" class="box-request"
+							style="height: min-content;">
+
+							<h3 id="reportdatetimetitle"></h3>
+							<p id="reportdatetimetext"></p>
+
+							<h3 id="incidentdatetimetitle"></h3>
+							<p id="incidentdatetimetext"></p>
+
+							<h3 id="locationtitle"></h3>
+							<p id="locationtext"></p>
+
+							<h3 id="descriptiontitle"></h3>
+							<p id="descriptiontext"></p>
+
+							<h3 id="assetactivatedtitle"></h3>
+							<p id="assetactivatedtext"></p>
+
+							<h3 id="timetakenfulldeploytitle"></h3>
+							<p id="timetakenfulldeploytext"></p>
+
+							<h3 id="timelyupdatetitle"></h3>
+							<p id="timelyupdatetext"></p>
+
+							<h3 id="incidentenddatetimetitle"></h3>
+							<p id="incidentenddatetimetext"></p>
+
+							<h3 id="casualtyassessmenttitle"></h3>
+							<p id="casualtyassessmenttext"></p>
+
+							<h3 id="damageassessmenttitle"></h3>
+							<p id="damageassessmenttext"></p>
+
+						</div>
+						<div class="box-footer">
+							<a href="#" class="btn btn-info pull-right" type="acknowledge"
+								onClick="reportAcknowledged()">Acknowledge</a>
+								<button type="button" class="btn btn-primary">View
+								History</button>
+						</div>
+						<!-- /.box -->
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+			<div id="div1">
+
+				<!-- Chat -->
+				<section style="width: 600px;">
+					<div class="chat-container">
+						<div class="chat-header">
+							<i class="fa fa-bell-o"></i>
+							<p class="same-line">EF & IF Live Feed</p>
+							<div id="online-status" class="online-status"></div>
+							<p id="online-status-text" class="same-line text-success small">Online</p>
+
+
+						</div>
+						<div class="connecting">Connecting...</div>
+
+						<div id="reconnect" class="center-div form-group">
+							<button type="submit" onclick="reconnect()"
+								class="accent username-submit btn btn-success">Reconnect</button>
+						</div>
+
+						<!--CHAT MESSAGE CONTAINER-->
+
+						<div id="chat-page" style="height: min-content;">
+							<ul id="messageArea"
+								style="overflow-y: scroll; overflow-x: hidden;">
+
+							</ul>
+
+							<!--CHAT INPUT FORM -->
+							<form id="messageForm" name="messageForm" action="">
+								<div class="form-group">
+									<div class="input-group clearfix">
+										<input type="text" id="message"
+											placeholder="Type a message..." autocomplete="off"
+											class="form-control" />
+										<button type="submit" class="primary">Send</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+			</div>
+
+		</section>
+		<!-- /.content -->
+	</div>
+
+	<!-- /.content-wrapper -->
+
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
+	<script
+		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
+	<script
+		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+	<script
+		src="https://www.gstatic.com/firebasejs/4.6.0/firebase-messaging.js"></script>
+
+	<script src="js/sockjs.min.js"></script>
+	<script src="js/stomp.min.js"></script>
+	<script src="js/efmain.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="js/fbEFViewUpdateReport.js"></script>
+
+</body>
+</html>

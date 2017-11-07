@@ -26,17 +26,20 @@ function sendupdate() {
 	var threatLevel = document.querySelector('#threatLevel').value;
 	var areaDeployed = document.querySelector('#areaDeployed').value;
 	var deploymentStatus = document.querySelector('#deploymentStatus').value;
-	var note = document.querySelector('#note').value;
+	var notes = document.querySelector('#notes').value;
 	
 	let today = moment(new Date()).format('DD-MM-YYYY HH:mm:SS a');
 
 	let update = {
-			"updateDateTime" : today,
+			"datetime" : today,
+			"ifName" : "John",
+			"position" : "Police Officer",
 			"threatLevel" : threatLevel,
 			"areaDeployed" : areaDeployed,
 			"deploymentStatus" : deploymentStatus,
-			"note" : note,
+			"notes" : notes,
 			"isAcknowledged" : "false",
+			"isAcknowledged_datetime" : "false " + today
 	};
 	
 	var pushedItem = dbUpdate.push(update);

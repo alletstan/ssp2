@@ -1,4 +1,4 @@
-/*!
+	/*!
  *   AdminLTE v2.4.2
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <https://adminlte.io>
@@ -1551,6 +1551,7 @@ perspective
 
 .icheck>label {
 	padding-left: 0
+	display: block;
 }
 
 .form-control-feedback.fa {
@@ -1829,11 +1830,7 @@ perspective
 	margin-left: 10px;
 	width: 100%;
 	height: min-content;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
-}
-
-.box.box-primary {
-	border-top-color: #3c8dbc
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .box.box-info {
@@ -2111,7 +2108,8 @@ perspective
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
-	padding: 10px
+	padding: 10px;
+	overflow-y: scroll;
 }
 
 .no-header .box-body {
@@ -2584,7 +2582,9 @@ perspective
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	border-width: 1px
+	border-width: 1px;
+	display: block;
+	color: #fff;
 }
 
 .btn:active {
@@ -2630,7 +2630,9 @@ perspective
 
 .btn-primary {
 	background-color: #3c8dbc;
-	border-color: #367fa9
+	border-color: #367fa9;
+	margin-top: 8px;
+	float: right;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
@@ -2646,13 +2648,8 @@ perspective
 	background-color: #008d4c
 }
 
-.btn-info {
-	background-color: #00c0ef;
-	border-color: #00acd6
-}
-
 .btn-info:hover, .btn-info:active, .btn-info.hover {
-	background-color: #00acd6
+	background-color: #00acd6;
 }
 
 .btn-danger {
