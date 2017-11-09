@@ -31,7 +31,7 @@ function onConnected() {
     stompClient.subscribe('/channel/cmoefchat', onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    stompClient.send("/app/chat.addInternalUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
@@ -78,7 +78,7 @@ function sendMessage(event) {
             type: 'CHAT'
         };
 
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/chat.sendInternalMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();

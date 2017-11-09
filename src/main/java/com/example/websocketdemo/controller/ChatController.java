@@ -11,13 +11,13 @@ import com.example.websocketdemo.model.ChatMessage;
 @Controller
 public class ChatController {
 
-	@MessageMapping("/chat.sendMessage")
+	@MessageMapping("/chat.sendInternalMessage")
 	@SendTo("/channel/cmoefchat")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
 
-	@MessageMapping("/chat.addUser")
+	@MessageMapping("/chat.addInternalUser")
 	@SendTo("/channel/cmoefchat")
 	public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		// Add username in web socket session
@@ -27,13 +27,13 @@ public class ChatController {
 		return chatMessage;
 	}
 
-	@MessageMapping("/chat.sendInternalMessage")
+	@MessageMapping("/chat.sendMessage")
 	@SendTo("/channel/private")
 	public ChatMessage sendInternalMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
 
-	@MessageMapping("/chat.addInternalUser")
+	@MessageMapping("/chat.addUser")
 	@SendTo("/channel/private")
 	public ChatMessage addInternalUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		// Add username in web socket session

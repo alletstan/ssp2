@@ -31,7 +31,7 @@ function onConnected() {
 	stompClient.subscribe('/channel/private', onMessageReceived);
 
 	// Tell your username to the server
-	stompClient.send("/app/chat.addInternalUser", {}, JSON.stringify({
+	stompClient.send("/app/chat.addUser", {}, JSON.stringify({
 		sender : username,
 		type : 'JOIN'
 	}))
@@ -78,7 +78,7 @@ function sendMessage(event) {
 			type : 'CHAT'
 		};
 
-		stompClient.send("/app/chat.sendInternalMessage", {}, JSON
+		stompClient.send("/app/chat.sendMessage", {}, JSON
 				.stringify(chatMessage));
 		messageInput.value = '';
 	}
