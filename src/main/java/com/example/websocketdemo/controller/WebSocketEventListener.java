@@ -39,8 +39,8 @@ public class WebSocketEventListener {
 			chatMessage.setType(ChatMessage.MessageType.LEAVE);
 			chatMessage.setSender(username);
 
-			if (channelType == "public")
-				messagingTemplate.convertAndSend("/channel/public", chatMessage);
+			if (channelType == "cmoefchat")
+				messagingTemplate.convertAndSend("/channel/cmoefchat", chatMessage);
 			else
 				messagingTemplate.convertAndSend("/channel/private", chatMessage);
 

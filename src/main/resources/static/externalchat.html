@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SSP2 IF EF</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="/css/main.css" />
+
+<!-- Google Font -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+
+		<section class="content-header">
+			<!-- Chat -->
+			<section style="width: 600px;">
+				<div class="chat-container">
+					<div class="chat-header">
+						<i class="fa fa-bell-o"></i>
+						<p class="same-line">EF & CMO Live Feed</p>
+						<div id="online-status" class="online-status"></div>
+						<p id="online-status-text" class="same-line text-success small">Online</p>
+
+
+					</div>
+					<div class="connecting">Connecting...</div>
+
+					<div id="reconnect" class="center-div form-group">
+						<button type="submit" onclick="reconnect()"
+							class="accent username-submit btn btn-success">Reconnect</button>
+					</div>
+
+					<!--CHAT MESSAGE CONTAINER-->
+
+					<div id="chat-page" style="height: min-content;">
+						<ul id="messageArea"
+							style="overflow-y: scroll; overflow-x: hidden;">
+
+						</ul>
+
+						<!--CHAT INPUT FORM -->
+						<form id="messageForm" name="messageForm" action="">
+							<div class="form-group">
+								<div class="input-group clearfix">
+									<input type="text" id="message" placeholder="Type a message..."
+										autocomplete="off" class="form-control" />
+									<button type="submit" class="primary">Send</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</section>
+
+		</section>
+	</div>
+
+	<script src="js/sockjs.min.js"></script>
+	<script src="js/stomp.min.js"></script>
+	<script src="/js/externalchat.js"></script>
+	<script src="js/moment.js"></script>
+
+</body>
+
+</html>

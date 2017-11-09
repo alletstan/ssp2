@@ -12,17 +12,17 @@ import com.example.websocketdemo.model.ChatMessage;
 public class ChatController {
 
 	@MessageMapping("/chat.sendMessage")
-	@SendTo("/channel/public")
+	@SendTo("/channel/cmoefchat")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
 
 	@MessageMapping("/chat.addUser")
-	@SendTo("/channel/public")
+	@SendTo("/channel/cmoefchat")
 	public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		// Add username in web socket session
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-		headerAccessor.getSessionAttributes().put("channeltype", "public");
+		headerAccessor.getSessionAttributes().put("channeltype", "cmoefchat");
 
 		return chatMessage;
 	}

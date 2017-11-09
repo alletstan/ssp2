@@ -40,23 +40,6 @@ function connect() {
 	// Create references
 	dbRequest = firebase.database().ref("request");
 
-	// Add data
-	// With moment.js
-	// let today = moment(new Date()).format('DD-MM-YYYY HH:mm:SS a');
-	//
-	// var message = {
-	// "datetime" : today,
-	// "threatLevel" : 1,
-	// "crisisType" : "Test4",
-	// "affectedArea" : "West Area",
-	// "crisisDetails" : "Zombie Virus has Spread",
-	// "recommendedAction" : "Kill every zombie",
-	// "deploymentForce" : "Police, Ambulance, SWAT",
-	// "isAcknowledged" : "false",
-	// "isAcknowledged_datetime" : "false " + today
-	// }
-	// dbRequest.push(message);
-
 	// Get latest request
 	getrequest();
 }

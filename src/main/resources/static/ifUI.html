@@ -22,7 +22,7 @@
 			</h1>
 			<ol class="breadcrumb">
 			<li><a href="index.html"><i class="fa fa-dashboard"></i>
-						Login</a></li>
+						Login Page</a></li>
 				<li class="active">Home</li>
 			</ol>
 		</section>
@@ -88,45 +88,47 @@
 
 		<div id="div2">
 
-			<!-- Chat -->
 			<section style="width: 600px;">
-				<div class="chat-container">
-					<div class="chat-header">
-						<i class="fa fa-bell-o"></i>
-						<p class="same-line">IF Live Feed</p>
-						<div id="online-status" class="online-status"></div>
-						<p id="online-status-text" class="same-line text-success small">Online</p>
+					<div class="chat-container">
+						<div class="chat-header">
+							<i class="fa fa-bell-o"></i>
+							<p class="same-line">EF & IF Live Feed</p>
+							<div id="online-status" class="online-status"></div>
+							<p id="online-status-text" class="same-line text-success small">Online</p>
 
 
-					</div>
-					<div class="connecting">Connecting...</div>
+						</div>
+						<div class="connecting">Connecting...</div>
 
-					<div id="reconnect" class="center-div form-group">
-						<button type="submit" onclick="reconnect()"
-							class="accent username-submit btn btn-success">Reconnect</button>
-					</div>
+						<div id="reconnect" class="center-div form-group">
+							<button type="submit" onclick="reconnect()"
+								class="accent username-submit btn btn-success">Reconnect</button>
+						</div>
 
-					<!--CHAT MESSAGE CONTAINER-->
+						<!--CHAT MESSAGE CONTAINER-->
 
-					<div id="chat-page" style="height: min-content;">
-						<ul id="messageArea"
-							style="overflow-y: scroll; overflow-x: hidden;">
+						<div id="chat-page" style="height: min-content;">
+							<ul id="messageArea"
+								style="overflow-y: scroll; overflow-x: hidden;">
 
-						</ul>
+							</ul>
 
-						<!--CHAT INPUT FORM -->
-						<form id="messageForm" name="messageForm" action="">
-							<div class="form-group">
-								<div class="input-group clearfix">
-									<input type="text" id="message" placeholder="Type a message..."
-										autocomplete="off" class="form-control" />
-									<button type="submit" class="primary">Send</button>
+							<!--CHAT INPUT FORM -->
+							<form id="messageForm" name="messageForm" action="">
+								<div class="form-group">
+									<div class="input-group clearfix">
+										<input type="text" id="message"
+											placeholder="Type a message..." autocomplete="off"
+											class="form-control" />
+										<button type="submit" class="primary">Send</button>
+									</div>
 								</div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
-				</div>
-			</section>
+					
+				</section>
+
 		</div>
 	</div>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
