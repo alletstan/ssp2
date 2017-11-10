@@ -19,68 +19,109 @@
 	<div class="content-wrapper">
 		<section class="content-header">
 			<h1>
-				EF Syste <small>EF to CMO and IF</small>
+				EF System <small>SSP2 EF</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="index.html"><i class="fa fa-dashboard"></i>
-						Login Page</a></li>
+				<li>
+					<a href="index.html">
+						<i class="fa fa-dashboard"></i> Login Page
+					</a>
+				</li>
 				<li class="active">Home</li>
 			</ol>
 		</section>
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-6">
-					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title">Report System</h3>
-						</div>
-						<!-- /.box-header -->
-						<!-- form start -->
-						<form role="form">
-							<div class="small-box bg-blue">
-								<div class="inner">
-									<a href="efsendupdate.html">View Report</a>
-								</div>
-							</div>
-							<div class="small-box bg-blue">
-								<div class="inner">
-									<a href="efsendupdate.html">Send Report</a>
-								</div>
-							</div>
-						</form>
-					</div>
-					<!-- /.box -->
-					<!-- Form Element sizes -->
+				<div class="col-md-4">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">Send CMO Update</h3>
+							<h3 class="box-title">Send CMO Report</h3>
+						</div>
+
+						<form class="form-horizontal" id="requestDetails"
+							action="/EFtoCMO/addReport" method="POST">
+
+							<div class="box-body">
+								<input class="form-control" type="text"
+									placeholder="Date/Time of incident" name="datetime">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Location of incident" name="location">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Description of incident" name="description">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Assets activated" name="assetsActivated">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Time taken to be fully deployed"
+									name="timeToFullDeploy">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Timely update" name="timelyUpdate">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Date/Time of incident end (if applicable)"
+									name="incidentEndDateTime">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Casualty assessment" name="casualtyAssessment">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Damage assessment" name="damageAssessment">
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<button type="submit" class="btn btn-primary" id="new_report"
+									name="action" value="send">Send</button>
+							</div>
+							<!-- /.box -->
+						</form>
+					</div>
+				</div>
+				<!-- /.box -->
+
+				<!-- /.box -->
+				<!-- Form Element sizes -->
+				<div class="col-md-4">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Send CMO Feedback Report</h3>
 						</div>
 						<div class="box-body">
-							<label>Choice of IF</label> <select class="form-control select2"
-								style="width: 100%;" placeholder="Choice of IF">
-								<option selected="selected">Military Force</option>
-								<option>Firefighter</option>
-								<option>Search and Rescue</option>
-								<option>Coast Guard</option>
-								<option>HAZMAT</option>
-								<option>Bomb Disposal</option>
-								<option>Civilian Evacuation</option>
-								<option>Ambulance</option>
-								<option>Aviation</option>
-							</select> <br> <input class="form-control" type="text"
-								placeholder="Deployment Status"> <br> <input
-								class="form-control" rows="3" placeholder="Remarks"></input>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary">Send</button>
+							<form class="form-horizontal" id="sendCMOUpdate"
+								action="/EFtoCMO/addFeedbackReport" method="POST">
+								<label>Threat Level</label> <select class="form-control select2"
+									style="width: 100%;" placeholder="Threat Level"
+									name="threatLevel" id="threatLevel">
+									<option selected="selected">1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select> <br>
+								<input class="form-control" type="text"
+									placeholder="Casualties Rescued" name="casualtiesRescued">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Deployment Status" name="deploymentStatus">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Situation Status" name="situationStatus">
+
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<button type="submit" class="btn btn-primary"
+										id="new_feedbackreport" name="action" value="send">Send</button>
+								</div>
+							</form>
 						</div>
 					</div>
 					<!-- /.box -->
 				</div>
-				<div class="col-md-6">
+
+				<div class="col-md-4">
 					<div class="box">
 						<div class="box-header with-border">
 							<h3 class="box-title">Send IF Request</h3>
@@ -89,22 +130,27 @@
 							action="/efUI.html">
 							<div class="box-body">
 								<label>Threat Level</label> <select class="form-control select2"
-									style="width: 100%;" placeholder="Choice of IF"
+									style="width: 100%;" placeholder="Threat Level"
 									id="threatLevel">
 									<option selected="selected">1</option>
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
-								</select> <br> <input class="form-control" type="text"
-									placeholder="Crisis type" id="crisisType"> <br> <input
-									class="form-control" type="text" placeholder="Affected area"
-									id="affectedArea"> <br> <input
-									class="form-control" rows="3" placeholder="Crisis details"
-									id="crisisDetails"></input> <br> <input
-									class="form-control" rows="3"
+								</select> <br>
+								<input class="form-control" type="text"
+									placeholder="Crisis type" id="crisisType">
+								<br>
+								<input class="form-control" type="text"
+									placeholder="Affected area" id="affectedArea">
+								<br>
+								<input class="form-control" rows="3"
+									placeholder="Crisis details" id="crisisDetails"></input>
+								<br>
+								<input class="form-control" rows="3"
 									placeholder="Recommended course of action"
-									id="recommendedAction"></input> <br> <label>Choice
-									of IF</label> <select class="form-control select2" style="width: 100%;"
+									id="recommendedAction"></input>
+								<br> <label>Choice of IF</label> <select
+									class="form-control select2" style="width: 100%;"
 									placeholder="Choice of IF" id="choiceOfIF">
 									<option selected="selected">Military Force</option>
 									<option>Firefighter</option>
@@ -124,42 +170,70 @@
 						</form>
 					</div>
 					<!-- /.box -->
-
 				</div>
 			</div>
+
 			<div class="row">
-				<div class="col-md-6">
-					<div class="box">
-						<div class="box-header with-border">
-							<h3 class="box-title">Receive CMO Request</h3>
-						</div>
-						<div class="box-body">
-							<div class="form-group"></div>
-							<input type="text" class="form-control" placeholder="Name"
-								disabled> <br> <input type="text"
-								class="form-control" placeholder="Position in CMO" disabled>
-							<br> <input type="text" class="form-control"
-								placeholder="Threat level" disabled> <br> <input
-								type="text" class="form-control" placeholder="Crisis type"
-								disabled> <br> <input type="text"
-								class="form-control" placeholder="Affected area" disabled>
-							<br> <input type="text" class="form-control" rows="3"
-								placeholder="Crisis details" disabled></input> <br> <input
-								type="text" class="form-control" rows="2"
-								placeholder="Recommended course of action" disabled></input> <br>
-							<input type="text" class="form-control" rows="2"
-								placeholder="Forces to be deployed" disabled></input>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer">
-							<a href="#" class="btn btn-info pull-right" type="acknowledge">Acknowledge</a>
-							<button type="button" class="btn btn-primary">View
-								History</button>
+				<div class="col-md-4">
+					<div class="container">
+						<div class="table-responsive">
+							<div class="col-sm-12 text-center" style="margin-bottom: 30px">
+								<h1>Receive Orders from CMO</h1>
+								<div class="col-sm-6 col-sm-offset-3">
+									<hr>
+								</div>
+							</div>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Position in CMO</th>
+										<th>Threat Level</th>
+										<th>Crisis Type</th>
+										<th>Affected Area</th>
+										<th>Crisis Details</th>
+										<th>Course of Action</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="order" items="${orderList}">
+										<tr>
+											<td>
+												<div class="table-entry">${order.crisisID}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.name}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.positionInCMO}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.threatLevel}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.crisisType}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.affectedArea}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.crisisDetails}</div>
+											</td>
+											<td>
+												<div class="table-entry">${order.courseOfAction}</div>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<!-- /.box -->
+
 				</div>
-				<div class="col-md-3">
+				<!-- /.box -->
+				<div class="col-md-4">
 					<div class="box">
 						<div class="box-header with-border">
 							<i class="fa fa-text-width"></i>
@@ -201,7 +275,7 @@
 						<!-- /.box -->
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="box">
 						<div class="box-header with-border">
 							<i class="fa fa-text-width"></i>
@@ -253,56 +327,56 @@
 					</div>
 				</div>
 			</div>
-			<!-- /.row -->
-			<div id="div1">
+		</section>
+	</div>
+	<!-- /.row -->
+	<div id="div1">
 
-				<!-- Chat -->
-				<section style="width: 600px;">
-					<div class="chat-container">
-						<div class="chat-header">
-							<i class="fa fa-bell-o"></i>
-							<p class="same-line">EF & IF Live Feed</p>
-							<div id="online-status" class="online-status"></div>
-							<p id="online-status-text" class="same-line text-success small">Online</p>
+		<!-- Chat -->
+		<section style="width: 600px;">
+			<div class="chat-container">
+				<div class="chat-header">
+					<i class="fa fa-bell-o"></i>
+					<p class="same-line">EF & IF Live Feed</p>
+					<div id="online-status" class="online-status"></div>
+					<p id="online-status-text" class="same-line text-success small">Online</p>
 
 
+				</div>
+				<div class="connecting">Connecting...</div>
+
+				<div id="reconnect" class="center-div form-group">
+					<button type="submit" onclick="reconnect()"
+						class="accent username-submit btn btn-success">Reconnect</button>
+				</div>
+
+				<!--CHAT MESSAGE CONTAINER-->
+
+				<div id="chat-page" style="height: min-content;">
+					<ul id="messageArea"
+						style="overflow-y: scroll; overflow-x: hidden;">
+
+					</ul>
+
+					<!--CHAT INPUT FORM -->
+					<form id="messageForm" name="messageForm" action="">
+						<div class="form-group">
+							<div class="input-group clearfix">
+								<input type="text" id="message" placeholder="Type a message..."
+									autocomplete="off" class="form-control" />
+								<button type="submit" class="primary">Send</button>
+							</div>
 						</div>
-						<div class="connecting">Connecting...</div>
-
-						<div id="reconnect" class="center-div form-group">
-							<button type="submit" onclick="reconnect()"
-								class="accent username-submit btn btn-success">Reconnect</button>
-						</div>
-
-						<!--CHAT MESSAGE CONTAINER-->
-
-						<div id="chat-page" style="height: min-content;">
-							<ul id="messageArea"
-								style="overflow-y: scroll; overflow-x: hidden;">
-
-							</ul>
-
-							<!--CHAT INPUT FORM -->
-							<form id="messageForm" name="messageForm" action="">
-								<div class="form-group">
-									<div class="input-group clearfix">
-										<input type="text" id="message"
-											placeholder="Type a message..." autocomplete="off"
-											class="form-control" />
-										<button type="submit" class="primary">Send</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-					
-				</section>
-				
-				<a href="externalchat.html">External Chat</a>				
+					</form>
+				</div>
 			</div>
 
 		</section>
-		<!-- /.content -->
+
+		<a href="externalchat.html">External Chat</a>
+	</div>
+	</section>
+	<!-- /.content -->
 	</div>
 
 	<!-- /.content-wrapper -->

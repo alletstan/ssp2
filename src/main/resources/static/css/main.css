@@ -29,6 +29,15 @@ body {
 	max-height: 550px;
 }
 
+.col-md-4 {
+	width: 33%;
+	float: left;
+	position: relative;
+	display: inline-flex;
+	height: 550px;
+	max-height: 550px;
+}
+
 .col-md-3 {
 	width: 25%;
 	float: left;
@@ -84,7 +93,6 @@ h1 {
 #request-page, #update-page, #report-page {
 	margin: 12px;
 	max-height: 550px;
-	overflow-y: scroll;
 }
 
 #request-page h3 {

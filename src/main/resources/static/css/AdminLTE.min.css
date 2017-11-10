@@ -1829,8 +1829,9 @@ perspective
 	margin-top: 10px;
 	margin-left: 10px;
 	width: 100%;
-	height: min-content;
+	height: auto;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	overflow-y: scroll
 }
 
 .box.box-info {
