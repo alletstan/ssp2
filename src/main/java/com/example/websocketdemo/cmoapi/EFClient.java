@@ -156,5 +156,25 @@ public class EFClient {
 		return success;
 		// System.out.println("Location : " + uri.toASCIIString());
 	}
+	
+	// POST Feedback Report
+		public static boolean createOrder(Order order) {
+			System.out.println("Testing create Order API----------");
+			System.out.println(order);
+
+			boolean success;
+
+			RestTemplate restTemplate = new RestTemplate();
+			try {
+				success = restTemplate
+						.postForEntity(REST_SERVICE_URI + "/order/", order, Order.class)
+						.getStatusCode().is2xxSuccessful();
+			} catch (Exception e) {
+				success = false;
+			}
+			System.out.println(success);
+			return success;
+			// System.out.println("Location : " + uri.toASCIIString());
+		}
 
 }

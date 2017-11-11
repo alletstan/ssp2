@@ -5,25 +5,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "order_table")
 public class Order {
 	
 	@Id
 	private long crisisID;
+	
 	private String name;
 	private String positionInCMO;
 	private int threatLevel;
 	private String crisisType;
 	private String affectedArea;
 	private String crisisDetails;
-	private String couseofAction;
+	private String courseofAction;
  
 	public Order(){
         crisisID=0;
     }
 
 	public Order(long crisisID, String name, String positionInCMO, int threatLevel, String crisisType,
-			String affectedArea, String crisisDetails, String couseofAction) {
+			String affectedArea, String crisisDetails, String courseofAction) {
 		this.crisisID = crisisID;
 		this.name = name;
 		this.positionInCMO = positionInCMO;
@@ -31,7 +32,7 @@ public class Order {
 		this.crisisType = crisisType;
 		this.affectedArea = affectedArea;
 		this.crisisDetails = crisisDetails;
-		this.couseofAction = couseofAction;
+		this.setCourseofAction(courseofAction);
 	}
 
 	public long getCrisisID() {
@@ -89,13 +90,13 @@ public class Order {
 	public void setCrisisDetails(String crisisDetails) {
 		this.crisisDetails = crisisDetails;
 	}
-
-	public String getCouseofAction() {
-		return couseofAction;
+	
+	public String getCourseofAction() {
+		return courseofAction;
 	}
 
-	public void setCouseofAction(String couseofAction) {
-		this.couseofAction = couseofAction;
+	public void setCourseofAction(String courseofAction) {
+		this.courseofAction = courseofAction;
 	}
 
 	@Override
@@ -125,7 +126,7 @@ public class Order {
 		return "Report [crisisID=" + crisisID + ", name=" + name + ", positionInCMO=" + positionInCMO
 				+ ", threatLevel=" + threatLevel + ", crisisType=" + crisisType
 				+ ", affectedArea=" + affectedArea + ", crisisDetails=" + crisisDetails
-				+ ", couseofAction=" + couseofAction + "]";
+				+ ", courseofAction=" + courseofAction + "]";
 	}
  
  

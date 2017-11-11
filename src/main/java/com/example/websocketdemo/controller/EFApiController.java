@@ -1,7 +1,6 @@
 //Server side
 package com.example.websocketdemo.controller;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.servlet.view.RedirectView;
-
 import com.example.websocketdemo.cmoapi.EFClient;
 import com.example.websocketdemo.model.FeedbackReport;
 import com.example.websocketdemo.model.Order;
@@ -44,13 +40,14 @@ public class EFApiController {
 	// return new ModelAndView("efUI");
 	// }
 
-	// @RequestMapping("/efUI.html")
-	// public ModelAndView homePage(ModelMap model) {
-	// System.out.println("Here is the ef page");
-	// ResponseEntity<List<Order>> orders = EFClient.listLatestOrders();
-	// model.put("orderList", orders);
-	// return new ModelAndView("/efUI.html");
-	// }
+	@RequestMapping("/")	
+	public ModelAndView homePage(ModelMap model) {
+		System.out.println("Here is the ef page");
+		ResponseEntity<List<Order>> orders = EFClient.listLatestOrders();
+		System.out.print(orders);
+		model.put("orderList", orders);
+		return new ModelAndView("/efUI.html");
+	}
 
 	// -------------------Retrieve All
 	// Reports---------------------------------------------
@@ -148,7 +145,7 @@ public class EFApiController {
 
 	@RequestMapping(value = "/feedbackReport/new", method = RequestMethod.POST)
 	public ModelAndView createFeedbackReport(@RequestParam String threatLevel, @RequestParam String casualtiesRescued,
-			@RequestParam String deploymentStatus, @RequestParam String situationStatus, @RequestParam String action, ModelMap model) {
+			@RequestParam String deploymentStatus, @RequestParam String situationStatus, @RequestParam String action) {
 
 		System.out.println(situationStatus);
 
@@ -163,9 +160,20 @@ public class EFApiController {
 		feedbackReportController.addFeedbackReport(temp);
 		boolean success = EFClient.createFeedbackReport(temp);
 
-		model.put("message", "Report has been sent: " + success);
-		model.put("redirect", "/efUI.html");
-		return new ModelAndView("redirect:/message.html");
+		return new ModelAndView("redirect:/reportmessage.html");
+	}
+	
+	@RequestMapping(value = "/order/new", method = RequestMethod.POST)
+	public ModelAndView createFeedbackReport() {
+
+		Order temp = new Order(1, "Peter", "General", 1, "Test1", "Test1", "Test1", "Test1");
+
+		System.out.println("Order to be sent is " + temp);
+
+		orderController.addOrder(temp);
+		boolean success = EFClient.createOrder(temp);
+
+		return new ModelAndView("redirect:/reportmessage.html");
 	}
 
 }

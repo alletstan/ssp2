@@ -13,6 +13,7 @@ import com.example.websocketdemo.model.Order;
 import com.example.websocketdemo.service.OrderService;
 
 @RestController
+@RequestMapping("/EFtoCMO")
 public class OrderController {
 	
 	@Autowired

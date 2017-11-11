@@ -25,7 +25,9 @@ public class OrderService {
 	}
 	
 	public void addOrder(Order operator){
-		orderRepository.save(operator);
+		Order savedOrder = orderRepository.save(operator);
+		Order success = orderRepository.findByCrisisID(savedOrder.getCrisisID());
+		System.out.print(success);
 	}
 	
 	public Order updateOrder(int crisisID, Order order){

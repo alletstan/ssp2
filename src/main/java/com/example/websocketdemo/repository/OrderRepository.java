@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderRepository extends CrudRepository<Order, String>{
 
-	public Order findByCrisisID(int crisisID);
+	public Order findByCrisisID(long crisisID);
 		
 	@Modifying
 	@Query("delete from Order where crisisID = :crisisID")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -76,7 +76,7 @@
 							<h3 class="box-title">Send IF Request</h3>
 						</div>
 						<form class="form-horizontal" id="requestDetails"
-							action="/efUI.html">
+							action="EFtoCMO/order/new" method="POST">
 							<div class="box-body">
 								<label>Threat Level</label> <select class="form-control select2"
 									style="width: 100%;" placeholder="Threat Level"
@@ -127,11 +127,13 @@
 					<div class="container">
 						<div class="table-responsive">
 							<div class="col-sm-12 text-center" style="margin-bottom: 30px">
+
 								<h1>Receive Orders from CMO</h1>
 								<div class="col-sm-6 col-sm-offset-3">
 									<hr>
 								</div>
 							</div>
+
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -147,34 +149,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="order" items="${orderList}">
-										<tr>
-											<td>
-												<div class="table-entry">${order.crisisID}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.name}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.positionInCMO}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.threatLevel}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.crisisType}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.affectedArea}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.crisisDetails}</div>
-											</td>
-											<td>
-												<div class="table-entry">${order.courseOfAction}</div>
-											</td>
-										</tr>
-									</c:forEach>
+									<tr th:each="order : ${orderList}">
+										<td th:text="${count.crisisID}"></td>
+										<td th:text="${count.name}"></td>
+										<td th:text="${count.positionInCMO}"></td>
+										<td th:text="${count.threatLevel}"></td>
+										<td th:text="${count.crisisType}"></td>
+										<td th:text="${count.affectedArea}"></td>
+										<td th:text="${count.crisisDetails}"></td>
+										<td th:text="${count.courseOfAction}"></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -330,6 +314,9 @@
 
 	<!-- /.content-wrapper -->
 
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
 	<script
