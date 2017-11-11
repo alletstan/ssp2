@@ -20,25 +20,37 @@ public class OrderController {
 	
 	@RequestMapping("/order")
 	public List<Order> getAllOrders(){
-		return orderService.findAllOrders();
+		return orderService.getAllOrders();
 	}
 	
 	//curly braces for inputs
 	@RequestMapping("/order/{id}")
-	public Order getOrder(@PathVariable int orderID){ //need use @pathvariable. convention to keep names same
-		return orderService.findById(orderID);
+	public Order getOrder(@PathVariable("id") int orderID){ //need use @pathvariable. convention to keep names same
+		return orderService.getOrder(orderID);
 	}
 	
 	//method to save order
 	@RequestMapping(method=RequestMethod.POST, value="/order")
 	public void addOrder(@RequestBody Order order){
-		orderService.saveOrder(order);
+		orderService.addOrder(order);
 	}
 	
+	@RequestMapping(method=RequestMethod.PUT, value="/order/{orderID}")
+	public void updateOrder(@RequestBody Order order, @PathVariable("orderID") int orderID){
+		Order savedOrder = orderService.updateOrder(orderID, order);
+		System.out.print(savedOrder);
+	}
+	
+	public Order updateOrderOfficer(Order order, int officerID, int orderID){
+		return orderService.updateOrder(orderID, order);
+	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/order/{orderID}")
-	public void deleteOrder(@PathVariable Order order){
-		orderService.deleteOrder(order);
+	public void deleteOrder(@PathVariable("orderID") String orderID){
+		orderService.deleteOrder(orderID);
 	}
 
+	public List<Integer> getAllOrderIDs(){
+		return orderService.getAllOrderIDs();
+	}
 }

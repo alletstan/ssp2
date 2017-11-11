@@ -1,8 +1,16 @@
 package com.example.websocketdemo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "FeedbackReport")
 public class FeedbackReport {
 	
+	@Id
 	private long crisisID;
+	
 	private String name;
 	private String positionInEF;
 	private int threatLevel;

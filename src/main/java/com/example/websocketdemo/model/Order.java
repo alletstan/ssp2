@@ -1,7 +1,14 @@
 package com.example.websocketdemo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Order")
 public class Order {
 	
+	@Id
 	private long crisisID;
 	private String name;
 	private String positionInCMO;

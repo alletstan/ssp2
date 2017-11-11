@@ -7,13 +7,16 @@ import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.websocketdemo.model.FeedbackReport;
-import com.example.websocketdemo.model.Report;
+import com.example.websocketdemo.model.Order;
 
 public class EFClient {
 
+	// public static final String REST_SERVICE_URI =
+	// "http://10.27.113.59:8080/EFtoCMO";
 	public static final String REST_SERVICE_URI = "http://localhost:8080/EFtoCMO";
 
 	// GET
@@ -45,6 +48,35 @@ public class EFClient {
 
 	// GET
 	@SuppressWarnings({ "unchecked" })
+	public static ResponseEntity<List<Order>> listLatestOrders() {
+		int i = 1;
+		System.out.println("Testing receiving Order API-----------");
+
+		RestTemplate restTemplate = new RestTemplate();
+		List<LinkedHashMap<String, Object>> ordersMap = restTemplate.getForObject(REST_SERVICE_URI + "/order/",
+				List.class);
+
+		if (ordersMap != null) {
+			for (LinkedHashMap<String, Object> map : ordersMap) {
+				if (i++ == ordersMap.size()) {
+					// end
+
+					System.out.println("crisisID=" + map.get("crisisID") + "," + " name=" + map.get("name") + ","
+							+ " positionInCMO=" + map.get("positionInCMO") + "," + " threatLevel="
+							+ map.get("threatLevel") + "," + " affectedArea=" + map.get("affectedArea") + ","
+							+ " crisisDetails=" + map.get("crisisDetails") + "," + " courseofAction="
+							+ map.get("courseofAction"));
+				}
+				return (ResponseEntity<List<Order>>) ordersMap;
+			}
+		} else {
+			System.out.println("No order exist----------");
+		}
+		return null;
+	}
+
+	// GET
+	@SuppressWarnings({ "unchecked" })
 	public static void listAllFeedbackReports() {
 		System.out.println("Testing receiving Feedback Report API-----------");
 
@@ -66,6 +98,27 @@ public class EFClient {
 	}
 
 	// GET
+	@SuppressWarnings({ "unchecked" })
+	public static void listAllOrders() {
+		System.out.println("Testing receiving Order API-----------");
+
+		RestTemplate restTemplate = new RestTemplate();
+		List<LinkedHashMap<String, Object>> ordersMap = restTemplate.getForObject(REST_SERVICE_URI + "/order/",
+				List.class);
+
+		if (ordersMap != null) {
+			for (LinkedHashMap<String, Object> map : ordersMap) {
+				System.out.println("crisisID=" + map.get("crisisID") + "," + " name=" + map.get("name") + ","
+						+ " positionInCMO=" + map.get("positionInCMO") + "," + " threatLevel=" + map.get("threatLevel")
+						+ "," + " affectedArea=" + map.get("affectedArea") + "," + " crisisDetails="
+						+ map.get("crisisDetails") + "," + " courseofAction=" + map.get("courseofAction"));
+			}
+		} else {
+			System.out.println("No order exist----------");
+		}
+	}
+
+	// GET
 	public static void getFeedbackReport() {
 		System.out.println("Testing get Feedback Report API----------");
 
@@ -74,26 +127,34 @@ public class EFClient {
 				FeedbackReport.class);
 		System.out.println(feedbackReport);
 	}
+	
+	// GET
+	public static void getOrder() {
+		System.out.println("Testing get Order API----------");
+
+		RestTemplate restTemplate = new RestTemplate();
+		Order order = restTemplate.getForObject(REST_SERVICE_URI + "/order/1", Order.class);
+		System.out.println(order);
+	}
 
 	// POST Feedback Report
-	public static void createFeedbackReport(FeedbackReport feedbackReport) {
+	public static boolean createFeedbackReport(FeedbackReport feedbackReport) {
 		System.out.println("Testing create Feedback Report API----------");
 		System.out.println(feedbackReport);
 
-		RestTemplate restTemplate = new RestTemplate();
-		URI uri = restTemplate.postForLocation(REST_SERVICE_URI + "/feedbackReport/", feedbackReport,
-				FeedbackReport.class);
-		System.out.println("Location : " + uri.toASCIIString());
-	}
-
-	// POST Report
-	public static void createReport(Report report) {
-		System.out.println("Testing create Report API----------");
-		System.out.println(report);
+		boolean success;
 
 		RestTemplate restTemplate = new RestTemplate();
-		URI uri = restTemplate.postForLocation(REST_SERVICE_URI + "/report/", report, Report.class);
-		System.out.println("Location : " + uri.toASCIIString());
+		try {
+			success = restTemplate
+					.postForEntity(REST_SERVICE_URI + "/feedbackReport/", feedbackReport, FeedbackReport.class)
+					.getStatusCode().is2xxSuccessful();
+		} catch (Exception e) {
+			success = false;
+		}
+		System.out.println(success);
+		return success;
+		// System.out.println("Location : " + uri.toASCIIString());
 	}
 
 }

@@ -13,32 +13,47 @@ import com.example.websocketdemo.model.FeedbackReport;
 import com.example.websocketdemo.service.FeedbackReportService;
 
 @RestController
+@RequestMapping("/EFtoCMO")
 public class FeedbackReportController {
-	
+
 	@Autowired
 	private FeedbackReportService feedbackReportService;
-	
-	@RequestMapping("/feedbackReport")
-	public List<FeedbackReport> getAllFeedbackReports(){
-		return feedbackReportService.findAllFeedbackReports();
-	}
-	
-	//curly braces for inputs
-	@RequestMapping("/feedbackReport/{id}")
-	public FeedbackReport getFeedbackReport(@PathVariable long crisisId){ //need use @pathvariable. convention to keep names same
-		return feedbackReportService.findById(crisisId);
-	}
-	
-	//method to save feedbackReport
-	@RequestMapping(method=RequestMethod.POST, value="/feedbackReport")
-	public void addFeedbackReport(@RequestBody FeedbackReport feedbackReport){
-		feedbackReportService.saveFeedbackReport(feedbackReport);
-	}
-	
-	
-	@RequestMapping(method=RequestMethod.DELETE, value="/feedbackReport/{feedbackReportID}")
-	public void deleteFeedbackReport(@RequestBody FeedbackReport feedbackReport){
-		feedbackReportService.deleteFeedbackReport(feedbackReport);
+
+	@RequestMapping(method = RequestMethod.GET, value = "/feedbackReport")
+	public List<FeedbackReport> getAllFeedbackReports() {
+		return feedbackReportService.getAllFeedbackReports();
 	}
 
+	// curly braces for inputs
+	@RequestMapping(method = RequestMethod.GET, value = "/feedbackReport/{crisisID}")
+	public FeedbackReport getFeedbackReport(@PathVariable("crisisID") int crisisID) { 
+		return feedbackReportService.getFeedbackReport(crisisID);
+	}
+
+	// method to save feedbackReport
+	@RequestMapping(method = RequestMethod.POST, value = "/feedbackReport")
+	public void addFeedbackReport(@RequestBody FeedbackReport feedbackReport) {
+		feedbackReportService.addFeedbackReport(feedbackReport);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/feedbackReport/{crisisID}")
+	public void updateFeedbackReport(@RequestBody FeedbackReport feedbackReport,
+			@PathVariable("crisisID") int crisisID) {
+		FeedbackReport savedFeedbackReport = feedbackReportService.updateFeedbackReport(crisisID, feedbackReport);
+		System.out.print(savedFeedbackReport);
+	}
+
+	public FeedbackReport updateFeedbackReportOfficer(FeedbackReport feedbackReport, int officerID,
+			int feedbackReportID) {
+		return feedbackReportService.updateFeedbackReport(feedbackReportID, feedbackReport);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/feedbackReport/{crisisID}")
+	public void deleteFeedbackReport(@PathVariable("crisisID") String crisisID) {
+		feedbackReportService.deleteFeedbackReport(crisisID);
+	}
+
+	public List<Integer> getAllFeedbackReportIDs() {
+		return feedbackReportService.getAllCrisisIDs();
+	}
 }

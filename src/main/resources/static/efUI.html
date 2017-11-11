@@ -33,57 +33,6 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="box">
-						<div class="box-header with-border">
-							<h3 class="box-title">Send CMO Report</h3>
-						</div>
-
-						<form class="form-horizontal" id="requestDetails"
-							action="/EFtoCMO/addReport" method="POST">
-
-							<div class="box-body">
-								<input class="form-control" type="text"
-									placeholder="Date/Time of incident" name="datetime">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Location of incident" name="location">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Description of incident" name="description">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Assets activated" name="assetsActivated">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Time taken to be fully deployed"
-									name="timeToFullDeploy">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Timely update" name="timelyUpdate">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Date/Time of incident end (if applicable)"
-									name="incidentEndDateTime">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Casualty assessment" name="casualtyAssessment">
-								<br>
-								<input class="form-control" type="text"
-									placeholder="Damage assessment" name="damageAssessment">
-							</div>
-							<!-- /.box-body -->
-							<div class="box-footer">
-								<button type="submit" class="btn btn-primary" id="new_report"
-									name="action" value="send">Send</button>
-							</div>
-							<!-- /.box -->
-						</form>
-					</div>
-				</div>
-				<!-- /.box -->
-
-				<!-- /.box -->
 				<!-- Form Element sizes -->
 				<div class="col-md-4">
 					<div class="box">
@@ -92,7 +41,7 @@
 						</div>
 						<div class="box-body">
 							<form class="form-horizontal" id="sendCMOUpdate"
-								action="/EFtoCMO/addFeedbackReport" method="POST">
+								action="EFtoCMO/feedbackReport/new" method="POST">
 								<label>Threat Level</label> <select class="form-control select2"
 									style="width: 100%;" placeholder="Threat Level"
 									name="threatLevel" id="threatLevel">
