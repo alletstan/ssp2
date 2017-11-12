@@ -85,9 +85,8 @@ function getrequest() {
 							recommendedactiontext.innerHTML = recommendedAction;
 							forcedeploymenttext.innerHTML = deploymentForce;
 
-							window
-									.alert("You have a request from EF sent on "
-											+ requestDateTime);
+							window.alert("You have a request from EF sent on "
+									+ requestDateTime);
 						}
 
 						if (requestNum == 0) {

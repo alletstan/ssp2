@@ -36,62 +36,52 @@ public class EFApiController {
 
 	// private static final String ERRORPATH = "/error";
 
-	@RequestMapping("/")
-	public ModelAndView mainPage(ModelMap model) {
-		String userInSession = null;
-
-		if (model.get("username") != null) {
-			userInSession = (String) model.get("username");
-		}
-		if (userInSession == null)
-			return new ModelAndView("redirect:/index.html");
-		else if (userInSession == "efpersonnel"){
-			return new ModelAndView("redirect:/home");
-		}
-		else {
-			return new ModelAndView("redirect:/ifUI.html");
-		}
-	}
+//	@RequestMapping("/")
+//	public ModelAndView mainPage(ModelMap model) {
+//		String userInSession = null;
+//
+//		if (model.get("username") != null) {
+//			userInSession = (String) model.get("username");
+//		}
+//		if (userInSession == null)
+//			return new ModelAndView("redirect:/index.html");
+//		else if (userInSession == "efpersonnel") {
+//			return new ModelAndView("redirect:/home");
+//		} else {
+//			return new ModelAndView("redirect:/ifUI.html");
+//		}
+//	}
 
 	@RequestMapping("/home")
 	public ModelAndView homePage(ModelMap model) {
-//		if (model.get("username") == null) {
-//			model.put("message", "Please log in first.");
-//			model.put("redirect", "/");
-//			return new ModelAndView("redirect:/message");
-//		} else {
-			List<LinkedHashMap<String, Object>> orders = EFClient.listLatestOrders();
-			model.put("orderList", orders);
-			return new ModelAndView("redirect:/efUI.html");
-//		}
-
+		List<LinkedHashMap<String, Object>> orders = EFClient.listLatestOrders();
+		model.put("orderList", orders);
+		return new ModelAndView("redirect:/efUI.html");
 	}
-	
+
+
 	@RequestMapping(value = "/EFtoCMO/order/latest", method = RequestMethod.GET)
-	public @ResponseBody List<LinkedHashMap<String, Object>> getLatestOrders(ModelMap model){
+	public @ResponseBody List<LinkedHashMap<String, Object>> getLatestOrders(ModelMap model) {
 		List<LinkedHashMap<String, Object>> orders = EFClient.listLatestOrders();
 		model.put("orderList", orders);
 		return orders;
 	}
 
-
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView handleLoginRequest(@RequestParam String username, ModelMap model) {
-
-		if (username == null) {
-			model.put("message", "Invalid Credentials. Please re-login again.");
-			model.put("redirect", "/");
-			return new ModelAndView("/message");
-		} else if (username.contentEquals("efpersonnel")){
-			model.put("username", username);
-			return new ModelAndView("redirect:/home");
-		}
-		else {
-			model.put("username", username);
-			return new ModelAndView("redirect:/ifUI.html");
-		}
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public ModelAndView handleLoginRequest(@RequestParam String username, ModelMap model) {
+//
+//		if (username == null) {
+//			model.put("message", "Invalid Credentials. Please re-login again.");
+//			model.put("redirect", "/");
+//			return new ModelAndView("/message");
+//		} else if (username.contentEquals("efpersonnel")) {
+//			model.put("username", username);
+//			return new ModelAndView("redirect:/home");
+//		} else {
+//			model.put("username", username.trim());
+//			return new ModelAndView("redirect:/ifUI.html");
+//		}
+//	}
 
 	// -------------------Retrieve All
 	// Reports---------------------------------------------

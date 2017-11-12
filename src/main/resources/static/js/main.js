@@ -8,21 +8,23 @@ var reportText = document.querySelector('#reportText');
 var actionReportText = document.querySelector('#actionReportText');
 
 var stompClient = null;
-var username = null;
+var username = amplify.store("loginUsername").toUpperCase();
+
+$('#username').append(username);
 
 var colors = [ '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107',
 		'#ff85af', '#FF9800', '#39bbb0' ];
 
 function connect(event) {
 
-	username = "IFPersonnel";
+	if (username) {
+		var socket = new SockJS('http://localhost:8080/ws');
+		stompClient = Stomp.over(socket);
 
-	var socket = new SockJS('http://localhost:8080/ws');
-	stompClient = Stomp.over(socket);
+		stompClient.connect({}, onConnected, onError);
 
-	stompClient.connect({}, onConnected, onError);
-
-	event.preventDefault();
+		event.preventDefault();
+	}
 }
 
 function onConnected() {

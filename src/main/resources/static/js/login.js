@@ -3,8 +3,9 @@ var loginUsername = null;
 
 function signIn() {
 	let loginUsername = document.querySelector('#username').value.trim();
+	amplify.store("loginUsername", loginUsername);
 	if (loginUsername == "efpersonnel") {
-		form.action="/efUI.html";
+		form.action="/home";
 		form.submit();
 	}
 	else if (loginUsername) {
