@@ -1,8 +1,13 @@
 //Server side
 package com.example.websocketdemo.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.example.websocketdemo.cmoapi.EFClient;
@@ -19,7 +25,6 @@ import com.example.websocketdemo.model.FeedbackReport;
 import com.example.websocketdemo.model.Order;
 
 @RestController
-@RequestMapping("/EFtoCMO")
 public class EFApiController {
 
 	public static final Logger logger = LoggerFactory.getLogger(EFApiController.class);
@@ -31,22 +36,61 @@ public class EFApiController {
 
 	// private static final String ERRORPATH = "/error";
 
-	// @RequestMapping("/")
-	// public ModelAndView mainPage(ModelMap model) {
-	// System.out.println("Here is main page");
-	// List<Order> orders = orderController.getAllOrders();
-	// model.put("orderList", orders);
-	//
-	// return new ModelAndView("efUI");
-	// }
+	@RequestMapping("/")
+	public ModelAndView mainPage(ModelMap model) {
+		String userInSession = null;
 
-	@RequestMapping("/")	
+		if (model.get("username") != null) {
+			userInSession = (String) model.get("username");
+		}
+		if (userInSession == null)
+			return new ModelAndView("redirect:/index.html");
+		else if (userInSession == "efpersonnel"){
+			return new ModelAndView("redirect:/home");
+		}
+		else {
+			return new ModelAndView("redirect:/ifUI.html");
+		}
+	}
+
+	@RequestMapping("/home")
 	public ModelAndView homePage(ModelMap model) {
-		System.out.println("Here is the ef page");
-		ResponseEntity<List<Order>> orders = EFClient.listLatestOrders();
-		System.out.print(orders);
+//		if (model.get("username") == null) {
+//			model.put("message", "Please log in first.");
+//			model.put("redirect", "/");
+//			return new ModelAndView("redirect:/message");
+//		} else {
+			List<LinkedHashMap<String, Object>> orders = EFClient.listLatestOrders();
+			model.put("orderList", orders);
+			return new ModelAndView("redirect:/efUI.html");
+//		}
+
+	}
+	
+	@RequestMapping(value = "/EFtoCMO/order/latest", method = RequestMethod.GET)
+	public @ResponseBody List<LinkedHashMap<String, Object>> getLatestOrders(ModelMap model){
+		List<LinkedHashMap<String, Object>> orders = EFClient.listLatestOrders();
 		model.put("orderList", orders);
-		return new ModelAndView("/efUI.html");
+		return orders;
+	}
+
+
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView handleLoginRequest(@RequestParam String username, ModelMap model) {
+
+		if (username == null) {
+			model.put("message", "Invalid Credentials. Please re-login again.");
+			model.put("redirect", "/");
+			return new ModelAndView("/message");
+		} else if (username.contentEquals("efpersonnel")){
+			model.put("username", username);
+			return new ModelAndView("redirect:/home");
+		}
+		else {
+			model.put("username", username);
+			return new ModelAndView("redirect:/ifUI.html");
+		}
 	}
 
 	// -------------------Retrieve All
@@ -143,7 +187,7 @@ public class EFApiController {
 	// return new ModelAndView("/");
 	// }
 
-	@RequestMapping(value = "/feedbackReport/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/EFtoCMO/feedbackReport/new", method = RequestMethod.POST)
 	public ModelAndView createFeedbackReport(@RequestParam String threatLevel, @RequestParam String casualtiesRescued,
 			@RequestParam String deploymentStatus, @RequestParam String situationStatus, @RequestParam String action) {
 
@@ -162,8 +206,8 @@ public class EFApiController {
 
 		return new ModelAndView("redirect:/reportmessage.html");
 	}
-	
-	@RequestMapping(value = "/order/new", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/EFtoCMO/order/new", method = RequestMethod.POST)
 	public ModelAndView createFeedbackReport() {
 
 		Order temp = new Order(1, "Peter", "General", 1, "Test1", "Test1", "Test1", "Test1");

@@ -90,9 +90,8 @@ h1 {
 	font-size: 1.7em;
 }
 
-#request-page, #update-page, #report-page {
+#request-page, #update-page, #report-page, #order-page {
 	margin: 12px;
-	max-height: 550px;
 }
 
 #request-page h3 {

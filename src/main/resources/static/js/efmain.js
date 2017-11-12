@@ -12,7 +12,6 @@ var username = null;
 var colors = [ '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107',
 		'#ff85af', '#FF9800', '#39bbb0' ];
 
-
 function connect(event) {
 
 	username = "EFPersonnel";
@@ -154,3 +153,43 @@ function reconnect() {
 
 window.addEventListener("load", connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+
+// $(document).ready(function(){
+// $.get("http://localhost:8080/EFtoCMO/order/latest", function(data, status){
+// alert("Data: " + data.crisisID + "\nStatus: " + status);
+// });
+// });
+
+$(document).ready(
+		function() {
+			$.ajax({
+				type : 'GET',
+				url : "http://localhost:8080/EFtoCMO/order/latest",
+				success : function(response) {
+					if (response.length != 0) {
+						alert("You have a new order from CMO")
+//						$.each(response, function(key, val) {
+//							$("table tbody").append(
+//									"<tr><th>Order No." + (key + 1)
+//											+ "</th></tr>");
+							$.each(response[0], function(index, data) {
+								var markup = "<h3>" + index + "</h3><p>"
+										+ data + "</p>";
+								$("#order-page").append(markup);
+
+//							})
+						});
+						// alert(response);
+						// var order = response[0];
+						// $('#order_crisisID').text(order.crisisID);
+						// $('#order_name').text(order.name);
+						// $('#order_positionInCMO').text(order.positionInCMO);
+						// $('#order_threatLevel').text(order.threatLevel);
+						// $('#order_crisisType').text(order.crisisType);
+						// $('#order_affectedArea').text(order.affectedArea);
+						// $('#order_crisisDetails').text(order.crisisDetails);
+						// $('#order_courseOfAction').text(order.courseofAction);
+					}
+				}
+			});
+		})

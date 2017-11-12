@@ -124,47 +124,27 @@
 
 			<div class="row">
 				<div class="col-md-4">
-					<div class="container">
-						<div class="table-responsive">
-							<div class="col-sm-12 text-center" style="margin-bottom: 30px">
+					<div class="box">
+						<div class="box-header with-border">
+							<i class="fa fa-text-width"></i>
 
-								<h1>Receive Orders from CMO</h1>
-								<div class="col-sm-6 col-sm-offset-3">
-									<hr>
-								</div>
-							</div>
-
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Name</th>
-										<th>Position in CMO</th>
-										<th>Threat Level</th>
-										<th>Crisis Type</th>
-										<th>Affected Area</th>
-										<th>Crisis Details</th>
-										<th>Course of Action</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="order : ${orderList}">
-										<td th:text="${count.crisisID}"></td>
-										<td th:text="${count.name}"></td>
-										<td th:text="${count.positionInCMO}"></td>
-										<td th:text="${count.threatLevel}"></td>
-										<td th:text="${count.crisisType}"></td>
-										<td th:text="${count.affectedArea}"></td>
-										<td th:text="${count.crisisDetails}"></td>
-										<td th:text="${count.courseOfAction}"></td>
-									</tr>
-								</tbody>
-							</table>
+							<h3 class="box-title">Receive Order from CMO</h3>
 						</div>
-					</div>
+						<!-- /.box-header -->
+						<div id="order-page" class="box-request"
+							style="height: min-content;">
 
+						</div>
+						<div class="box-footer">
+							<a href="#" class="btn btn-info pull-right" type="acknowledge"
+								onClick="orderAcknowledged()">Acknowledge</a>
+							<button type="button" class="btn btn-primary">View
+								History</button>
+						</div>
+						<!-- /.box -->
+					</div>
 				</div>
+
 				<!-- /.box -->
 				<div class="col-md-4">
 					<div class="box">
@@ -314,8 +294,9 @@
 
 	<!-- /.content-wrapper -->
 
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>

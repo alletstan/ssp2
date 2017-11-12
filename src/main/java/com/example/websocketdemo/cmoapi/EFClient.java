@@ -48,7 +48,7 @@ public class EFClient {
 
 	// GET
 	@SuppressWarnings({ "unchecked" })
-	public static ResponseEntity<List<Order>> listLatestOrders() {
+	public static List<LinkedHashMap<String, Object>> listLatestOrders() {
 		int i = 1;
 		System.out.println("Testing receiving Order API-----------");
 
@@ -56,7 +56,7 @@ public class EFClient {
 		List<LinkedHashMap<String, Object>> ordersMap = restTemplate.getForObject(REST_SERVICE_URI + "/order/",
 				List.class);
 
-		if (ordersMap != null) {
+		if (ordersMap.isEmpty() == false) {
 			for (LinkedHashMap<String, Object> map : ordersMap) {
 				if (i++ == ordersMap.size()) {
 					// end
@@ -67,7 +67,8 @@ public class EFClient {
 							+ " crisisDetails=" + map.get("crisisDetails") + "," + " courseofAction="
 							+ map.get("courseofAction"));
 				}
-				return (ResponseEntity<List<Order>>) ordersMap;
+				System.out.print(ordersMap);
+				return ordersMap;
 			}
 		} else {
 			System.out.println("No order exist----------");
@@ -127,14 +128,15 @@ public class EFClient {
 				FeedbackReport.class);
 		System.out.println(feedbackReport);
 	}
-	
+
 	// GET
-	public static void getOrder() {
+	public static Order getOrder() {
 		System.out.println("Testing get Order API----------");
 
 		RestTemplate restTemplate = new RestTemplate();
 		Order order = restTemplate.getForObject(REST_SERVICE_URI + "/order/1", Order.class);
 		System.out.println(order);
+		return order;
 	}
 
 	// POST Feedback Report
@@ -156,25 +158,24 @@ public class EFClient {
 		return success;
 		// System.out.println("Location : " + uri.toASCIIString());
 	}
-	
+
 	// POST Feedback Report
-		public static boolean createOrder(Order order) {
-			System.out.println("Testing create Order API----------");
-			System.out.println(order);
+	public static boolean createOrder(Order order) {
+		System.out.println("Testing create Order API----------");
+		System.out.println(order);
 
-			boolean success;
+		boolean success;
 
-			RestTemplate restTemplate = new RestTemplate();
-			try {
-				success = restTemplate
-						.postForEntity(REST_SERVICE_URI + "/order/", order, Order.class)
-						.getStatusCode().is2xxSuccessful();
-			} catch (Exception e) {
-				success = false;
-			}
-			System.out.println(success);
-			return success;
-			// System.out.println("Location : " + uri.toASCIIString());
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			success = restTemplate.postForEntity(REST_SERVICE_URI + "/order/", order, Order.class).getStatusCode()
+					.is2xxSuccessful();
+		} catch (Exception e) {
+			success = false;
 		}
+		System.out.println(success);
+		return success;
+		// System.out.println("Location : " + uri.toASCIIString());
+	}
 
 }
